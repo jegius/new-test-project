@@ -21,7 +21,7 @@ import {CategoriesService} from './services/categories.service.api';
     HeaderModule
   ],
   providers: [
-    { provide: CategoriesService, useClass: CategoriesServiceImplementation}
+    { provide: CategoriesService, useClass: CategoriesServiceImplementation }
   ],
   bootstrap: [AppComponent]
 })

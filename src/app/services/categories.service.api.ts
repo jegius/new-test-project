@@ -1,3 +1,5 @@
+import {Observable} from 'rxjs';
+
 export interface Category {
   id: string;
   name: string;
@@ -5,5 +7,7 @@ export interface Category {
 }
 
 export abstract class CategoriesService {
-  abstract getCategories(): Category[];
+  abstract getCategories(): Observable<Category[]>;
+  abstract addCategory(newCategory: Category): void;
+  abstract deleteCategory(id: string): void;
 }

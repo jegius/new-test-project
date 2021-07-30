@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {CategoriesService, Category} from './categories.service.api';
+import {BehaviorSubject, Observable } from 'rxjs';
+
 
 @Injectable()
 export class CategoriesServiceImplementation implements CategoriesService {
-  private readonly categories: Category[] = [];
+  private readonly categories: BehaviorSubject<Category[]>;
 
   constructor() {
-    this.categories = [
+    this.categories = new BehaviorSubject<Category[]>([
       {
         id: '1',
         name: 'Angular',
@@ -27,10 +29,22 @@ export class CategoriesServiceImplementation implements CategoriesService {
         name: 'React',
         questionsQuantity: 12
       }
-    ];
+    ]);
   }
 
-  getCategories(): Category[] {
-    return this.categories;
+  getCategories(): Observable<Category[]> {
+    return this.categories.asObservable();
+  }
+
+  addCategory(newCategory: Category): void {
+    const currentCategories = this.categories.getValue();
+    this.categories.next([...currentCategories, newCategory]);
+  }
+
+  deleteCategory(id: string): void {
+    const currentCategories = this.categories.getValue();
+    const filteredCategories = currentCategories.filter(category => category.id !== id);
+
+    this.categories.next(filteredCategories);
   }
 }

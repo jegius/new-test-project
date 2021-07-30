@@ -1,1 +1,2 @@
-<app-categories> </app-categories>
+<app-categories *ngIf="isCategoriesVisible"> </app-categories>
+<button (click)="toggleCategories()"> hide categories </button>

@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  isCategoriesVisible = false;
+
   constructor() {
+  }
+
+  toggleCategories(): void {
+    this.isCategoriesVisible = !this.isCategoriesVisible;
   }
 
   ngOnInit(): void {

@@ -1,4 +1,7 @@
-<div class="app-category" *ngFor="let category of categories; trackBy:identify">
+<div class="app-category" *ngFor="let category of categories | async; trackBy:identify">
   <div class="app-category__name"> {{ category?.name }}</div>
   <div class="app-category__quantity"> {{ category?.questionsQuantity }}</div>
 </div>
+
+<button (click)="addCategory()">Add</button>
+<button (click)="removeCategory()">delete</button>
