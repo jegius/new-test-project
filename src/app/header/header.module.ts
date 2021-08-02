@@ -14,7 +14,9 @@ import {SharedModule} from '../shared/shared.module';
     LeftSideComponent,
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    LeftSideComponent,
+    RightSideComponent
   ],
   imports: [
     SharedModule,

@@ -1,7 +1,25 @@
 <div class="app-category" *ngFor="let category of categories | async; trackBy:identify">
-  <div class="app-category__name"> {{ category?.name }}</div>
+
+  <ng-container *ngTemplateOutlet="name; context: category"></ng-container>
   <div class="app-category__quantity"> {{ category?.questionsQuantity }}</div>
 </div>
 
 <button (click)="addCategory()">Add</button>
 <button (click)="removeCategory()">delete</button>
+
+
+<ng-template #name let-name="name">
+  <ng-container [ngSwitch]="name">
+    <ng-container *ngSwitchCase="'Angular'" [ngTemplateOutlet]="angular" [ngTemplateOutletContext]="{name: name}"></ng-container>
+    <ng-container *ngSwitchDefault [ngTemplateOutlet]="default" [ngTemplateOutletContext]="{name: name}"></ng-container>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #angular let-name="name">
+  Angular is awesome! {{ name }}
+</ng-template>
+
+<ng-template #default let-name="name">
+  Other:  {{ name }}
+</ng-template>
