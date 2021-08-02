@@ -1,4 +1,9 @@
 <div class="app-header">
-  <app-left-side class="app-header__left"></app-left-side>
-  <app-right-side class="app-header__right"></app-right-side>
+  <ng-content></ng-content>
+  <div class="app-header__left-wrapper">
+    <ng-content select=".app-header__left"></ng-content>
+  </div>
+  <div class="app-header__right-wrapper">
+    <ng-content select="app-right-side"></ng-content>
+  </div>
 </div>
